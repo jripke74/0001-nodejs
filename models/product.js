@@ -1,4 +1,4 @@
-const Sequelize = require('sequelize');
+const getDb = require('../util/database').getDb;
 
 const sequelize = require('../util/database');
 
