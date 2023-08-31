@@ -1,3 +1,4 @@
+const mongoDb = require("mongodb");
 const getDb = require("../util/database").getDb;
 
 class Product {
@@ -10,10 +11,41 @@ class Product {
 
   save() {
     const db = getDb();
-    db.collection("products")
+    return db
+      .collection("products")
       .insertOne(this)
       .then((result) => {
-        console.log(result);
+        console.log("product model:", result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  static fetchAll() {
+    const db = getDb();
+    return db
+      .collection("products")
+      .find()
+      .toArray()
+      .then((product) => {
+        console.log("product model.js:", product);
+        return product;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  static findById(prodId) {
+    const db = getDb();
+    return db
+      .collection("products")
+      .find({ _id: new mongoDb.ObjectId(prodId) })
+      .next()
+      .then((product) => {
+        console.log("product model:", product);
+        return product;
       })
       .catch((err) => {
         console.log(err);
