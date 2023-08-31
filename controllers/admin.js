@@ -24,3 +24,17 @@ exports.postAddProduct = (req, res, next) => {
       console.log(err);
     });
 };
+
+exports.getProducts = (reg, res, next) => {
+  Product.fetchAll()
+    .then((products) => {
+      res.render("admin/products", {
+        prods: products,
+        pageTitle: "Admin Products",
+        path: "/admn/products",
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
