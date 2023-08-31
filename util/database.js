@@ -11,12 +11,13 @@ const mongoConnect = (callback) => {
     `mongodb+srv://jeff:${secrets.mongoDbPassword}@cluster0.delsao3.mongodb.net/shop?retryWrites=true&w=majority`
   )
     .then((client) => {
-      console.log("Connected!!!");
+      console.log("Connected!!!!!!!!!");
       _db = client.db();
       callback();
     })
     .catch((err) => {
       console.log(err);
+      console.log(secrets.mongoDbPassword);
       throw err;
     });
 };
