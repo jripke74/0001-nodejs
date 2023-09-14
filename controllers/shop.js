@@ -5,7 +5,7 @@ exports.getProducts = (req, res, next) => {
     .then((products) => {
       res.render("shop/product-list", {
         prods: products,
-        pageTitle: "Shop",
+        pageTitle: "All Products",
         path: "/products",
       });
     })
@@ -88,7 +88,7 @@ exports.postOrder = (req, res, next) => {
 
 exports.getOrders = (req, res, next) => {
   req.user
-    .getOrders({ include: ["products"] })
+    .getOrders()
     .then((orders) => {
       res.render("shop/orders", {
         pageTitle: "Your Orders",
